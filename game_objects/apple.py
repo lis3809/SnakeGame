@@ -20,9 +20,5 @@ class Apple(pg.sprite.Sprite):
         self.rect.x = random.randint(0,  screen.get_width() - self.rect.width)
         self.rect.y = random.randint(0,  screen.get_height() - self.rect.height)
 
-    # def update(self):
-        # self.rect.x = random.randint(0,  self.screen.get_width() - self.rect.width)
-        # self.rect.y = random.randint(0,  self.screen.get_height() - self.rect.height)
-
     def draw(self):
         self.screen.blit(self.image, self.rect)

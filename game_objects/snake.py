@@ -15,7 +15,6 @@ def load_img(name):
 class Snake():
     def __init__(self, screen):
         self.screen = screen
-        self.bodySprites = pg.sprite.Group()
 
         self.listBodySnake = []
         for i in range(3):
@@ -23,6 +22,7 @@ class Snake():
                                 game_config.WINDOW_SIZE[0] // 2 + game_config.size_segment_snake * i,
                                 game_config.WINDOW_SIZE[1] // 2)
             self.listBodySnake.append(body)
+
 
         self.direction = 'RIGHT'
         self.speed = game_config.size_segment_snake
@@ -59,10 +59,13 @@ class Snake():
         for snakeSegment in self.listBodySnake:
             snakeSegment.draw()
 
+    def add_segment(self):
+        last_segment = self.listBodySnake[-1]
+        self.listBodySnake.append(last_segment)
 
 class SnakeSegment(pg.sprite.Sprite):
     def __init__(self, screen, x, y):
-        super().__init__()
+        pg.sprite.Sprite.__init__(self)
         self.screen = screen
         self.image = load_img("picture/snake_body.png")
         self.rect = self.image.get_rect()

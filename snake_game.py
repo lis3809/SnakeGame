@@ -24,48 +24,43 @@ class SnakeGame():
         self.__FPS = config.FPS
         self.__clock = pg.time.Clock()
 
-        # Текущее значение очков игрока
-        self.__current_player_score = 0
-
         # Создаем объект класса GameDialog
         self.__game_dialog = GameDialog()
-
-        # Запрашиваем имя игрока
-        self.__player_name = self.__game_dialog.show_dialog_login()
-        print(self.__player_name)
-
-        # TODO
-        #self.__first_player_score = 10
 
         # Вызываем метод инициализациии остальных параметров
         self.__init_game()
 
     def __init_game(self):
+
+        # Текущее значение очков игрока
+        self.__current_player_score = 0
+
         # Создаем объект основного окна
         self.screen = pg.display.set_mode(game_config.WINDOW_SIZE)
         pg.display.set_caption("Змейка")
 
         # Cписок яблок
         self.apples = pg.sprite.Group()
+        self.apple_count = 1
 
         # Объект змейки
         self.snake = Snake(self.screen)
 
-
-        # В начале игры будет всего три яблока
-        for i in range(3):
-            # Объект астероида
+        # В начале игры будет всего одно яблоко
+        for i in range(self.apple_count):
+            # Объект яблока
             apple = Apple(self.screen)
             self.apples.add(apple)
+
 
     def __draw_scene(self):
         # отрисовка
         self.screen.blit(self.background, (0, 0))
 
-        self.apples.update()
         self.apples.draw(self.screen)
         self.snake.update()
         self.snake.draw()
+
 
         # Обновляем экран
         pg.display.update()
