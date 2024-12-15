@@ -15,7 +15,7 @@ class Apple(pg.sprite.Sprite):
         super().__init__()
         pg.sprite.Sprite.__init__(self)
         self.screen = screen
-        self.image = load_img("picture/apple.png")
+        self.image = load_img(random.choice(["picture/apple_red.png", "picture/apple_green.png"]))
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0,  screen.get_width() - self.rect.width)
         self.rect.y = random.randint(0,  screen.get_height() - self.rect.height)
